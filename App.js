@@ -6,6 +6,7 @@ import { setCustomText, setCustomTextInput } from 'react-native-global-props';
 
 import store from 'store';
 import Router from './src/routes';
+import GlobalBottomTabbar from 'components/GlobalBottomTabbar';
 
 
 export default class App extends PureComponent {
@@ -15,6 +16,7 @@ export default class App extends PureComponent {
             <Provider store={ store }>
                 <View style={{ flex: 1 }}>
                     <Router />
+                    <GlobalBottomTabbar />
                 </View>
             </Provider>
         );

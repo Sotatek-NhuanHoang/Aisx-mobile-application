@@ -7,7 +7,8 @@ YellowBox.ignoreWarnings([
     "Warning: isMounted(...) is deprecated",
     "Module RCTImageLoader",
     "Module RNOS requires",
-    "Method `jumpToIndex` is deprecated."
+    "Method `jumpToIndex` is deprecated.",
+    "Remote debugger is in a background tab"
 ]);
 
 import App from './App';
