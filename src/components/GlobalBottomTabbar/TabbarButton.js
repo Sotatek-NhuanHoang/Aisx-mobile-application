@@ -4,6 +4,7 @@ import { Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
 import AisxIcon from 'aisx-icon';
+import { navigate } from 'services/NavigationService';
 
 import styles from './TabbarButton.style';
 
@@ -17,12 +18,11 @@ class TabbarButton extends PureComponent {
 
     onButtonPressed() {
         const { routeName } = this.props;
+        navigate(routeName);
     }
 
     render() {
-        const { routeName, nav } = this.props;
-        const { index, routes } = nav;
-        const isActiveButton = routes[index].routeName === routeName;
+        const { routeName, isActiveButton } = this.props;
 
         let buttonLabel = '';
         let buttonIcon = '';
@@ -55,7 +55,7 @@ class TabbarButton extends PureComponent {
         }
 
         return (
-            <TouchableOpacity style={ styles.container }>
+            <TouchableOpacity style={ styles.container } onPress={ this.onButtonPressed }>
                 <AisxIcon name={ buttonIcon } style={[styles.buttonIcon, isActiveButton ? styles.buttonIcon__active : null]} />
                 <Text style={[styles.buttonLabel, isActiveButton ? styles.buttonLabel__active : null]}>
                     { buttonLabel }
@@ -66,8 +66,8 @@ class TabbarButton extends PureComponent {
 }
 
 
-const mapStateToProps = ({ nav }) => ({
-    nav: nav,
+const mapStateToProps = ({ nav }, ownProps) => ({
+    isActiveButton: (nav.routes[nav.index].routeName === ownProps.routeName),
 });
 
 export default connect(mapStateToProps)(TabbarButton);

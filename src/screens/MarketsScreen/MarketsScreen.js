@@ -7,10 +7,6 @@ import { NavigationActions } from 'react-navigation';
 
 export class LandingPageScreen extends PureComponent {
 
-    componentDidMount() {
-        this.props.navigation.navigate('LandingPageScreen');
-    }
-
     render() {
         return (
             <View>
