@@ -4,10 +4,12 @@ import createSagaMiddleware from 'redux-saga'
 import { reducer as i18n } from 'react-native-redux-i18n';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { all } from 'redux-saga/effects'
+import { all } from 'redux-saga/effects';
+import { navReducer, navMiddleware } from '../routes';
 
 
 const reducers = combineReducers({
+    nav: navReducer,
     i18n: persistReducer({
         key: 'i18n',
         storage: storage,
@@ -15,7 +17,7 @@ const reducers = combineReducers({
 });
 
 const sagaMiddleware = createSagaMiddleware();
-const middleWares = [thunk, sagaMiddleware];
+const middleWares = [navMiddleware, thunk, sagaMiddleware];
 
 if (__DEV__) {
     const { logger } = require('redux-logger');

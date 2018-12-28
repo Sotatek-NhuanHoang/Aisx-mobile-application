@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "aisx-icon": "./libraries/aisx-icon",
+    "components": "./src/components",
+    "i18n": "./src/i18n",
     "prop-types": "^15.6.2",
     "pure-component": "./libraries/pure-component",
     "react": "16.6.3",
@@ -19,18 +21,18 @@
     "react-native-i18n": "^2.0.15",
     "react-native-redux-i18n": "^1.0.11",
     "react-native-size-matters": "./libraries/react-native-size-matters",
+    "react-native-view-container": "./libraries/react-native-view-container",
     "react-navigation": "^3.0.9",
+    "react-navigation-redux-helpers": "^2.0.9",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.10.0",
     "redux-saga": "^0.16.2",
     "redux-thunk": "^2.3.0",
+    "screens": "./src/screens",
     "store": "./src/store",
-    "components": "./src/components",
-    "i18n": "./src/i18n",
-    "styles": "./src/styles",
-    "react-native-view-container": "./libraries/react-native-view-container"
+    "styles": "./src/styles"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

@@ -4,13 +4,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { setCustomText, setCustomTextInput } from 'react-native-global-props';
 
-import AisxIcon from 'aisx-icon';
-import GlobalLoc from 'components/GlobalLoc';
-import GlobalHeader from 'components/GlobalHeader';
-
-console.log(GlobalLoc)
-
 import store from 'store';
+import Router from './src/routes';
 
 
 export default class App extends PureComponent {
@@ -18,15 +13,8 @@ export default class App extends PureComponent {
     render() {
         return (
             <Provider store={ store }>
-                <View>
-                    <GlobalHeader
-                        titleComponent={<Text>Title hoang duc nhuan</Text>}
-                        rightComponent={<Text>Right</Text>}
-                    />
-
-                    <Text>Nhuan</Text>
-                    <AisxIcon name="account" />
-                    <GlobalLoc locKey="app.title" />
+                <View style={{ flex: 1 }}>
+                    <Router />
                 </View>
             </Provider>
         );
