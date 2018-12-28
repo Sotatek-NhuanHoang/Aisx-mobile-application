@@ -1,50 +1,28 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, { PureComponent } from 'react';
+import { View, ImageBackground, StatusBar, Platform, Text } from 'react-native';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { setCustomText, setCustomTextInput } from 'react-native-global-props';
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-import Config from 'react-native-config';
+import AisxIcon from 'aisx-icon';
+import GlobalLoc from 'components/GlobalLoc/GlobalLoc';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+console.log(GlobalLoc)
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>{ Config.API_URL }</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
-  }
+import store from 'store';
+
+
+export default class App extends PureComponent {
+
+    render() {
+        return (
+            <Provider store={ store }>
+                <View>
+                    <Text>Nhuan</Text>
+                    <AisxIcon name="account" />
+                    <GlobalLoc locKey="app.title" />
+                </View>
+            </Provider>
+        );
+    }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
