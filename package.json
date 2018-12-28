@@ -1,5 +1,5 @@
 {
-  "name": "AISX",
+  "name": "aisx",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -28,7 +28,8 @@
     "redux-thunk": "^2.3.0",
     "store": "./src/store",
     "components": "./src/components",
-    "i18n": "./src/i18n"
+    "i18n": "./src/i18n",
+    "styles": "./src/styles"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

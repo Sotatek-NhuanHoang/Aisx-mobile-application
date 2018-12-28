@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { setCustomText, setCustomTextInput } from 'react-native-global-props';
 
 import AisxIcon from 'aisx-icon';
-import GlobalLoc from 'components/GlobalLoc/GlobalLoc';
+import GlobalLoc from 'components/GlobalLoc';
 
 console.log(GlobalLoc)
 

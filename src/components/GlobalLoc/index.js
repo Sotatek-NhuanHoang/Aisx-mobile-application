@@ -1,1 +1,1 @@
-export * from './GlobalLoc';
+export default from './GlobalLoc';
