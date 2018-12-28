@@ -2,14 +2,17 @@ import { scale, verticalScale } from 'react-native-size-matters';
 
 
 export const Colors = {
-    primary: '#01C853',
-    lightenPrimary: '#5bdb90',
-    secondary: '#7c8580',
-    lightenSecondary: '#dce2e0',
-    warning: '#f3c12e',
-    info: '#FFFFFF',
-    danger: '#ff3600',
-    link: '#265799',
+    yellow: '#f29600',
+    green: '#11a111',
+    red: '#e63332',
+    white: '#ffffff',
+    graycc: '#cccccc',
+    gray99: '#999999',
+    gray66: '#666666',
+    gray33: '#333333',
+
+    rowBackgroundGray: '#f2f4f5',
+    headerBackgroundGray: '#3a3b41',
 };
 
 
@@ -27,6 +30,8 @@ export const FontSizes = {
 
 
 export const Sizes = {
+    paddingHorizontal: scale(15),
+
     s1: scale(5),
     s2: scale(10),
     s3: scale(15),

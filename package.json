@@ -29,7 +29,8 @@
     "store": "./src/store",
     "components": "./src/components",
     "i18n": "./src/i18n",
-    "styles": "./src/styles"
+    "styles": "./src/styles",
+    "react-native-view-container": "./libraries/react-native-view-container"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

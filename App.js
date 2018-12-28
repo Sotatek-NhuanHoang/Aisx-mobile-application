@@ -6,6 +6,7 @@ import { setCustomText, setCustomTextInput } from 'react-native-global-props';
 
 import AisxIcon from 'aisx-icon';
 import GlobalLoc from 'components/GlobalLoc';
+import GlobalHeader from 'components/GlobalHeader';
 
 console.log(GlobalLoc)
 
@@ -18,6 +19,11 @@ export default class App extends PureComponent {
         return (
             <Provider store={ store }>
                 <View>
+                    <GlobalHeader
+                        titleComponent={<Text>Title hoang duc nhuan</Text>}
+                        rightComponent={<Text>Right</Text>}
+                    />
+
                     <Text>Nhuan</Text>
                     <AisxIcon name="account" />
                     <GlobalLoc locKey="app.title" />
