@@ -7,6 +7,7 @@ export default ScaledSheet.create({
     },
 
     wrapper: {
+        width: '100%',
         height: '50@s',
         flexDirection: 'row',
         alignItems: 'center',

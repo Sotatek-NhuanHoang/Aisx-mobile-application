@@ -8,7 +8,12 @@ import { all } from 'redux-saga/effects';
 import { navReducer, navMiddleware } from '../routes';
 
 
+import marketReducer from './market';
+
+
 const reducers = combineReducers({
+    market: marketReducer,
+
     nav: navReducer,
     i18n: persistReducer({
         key: 'i18n',

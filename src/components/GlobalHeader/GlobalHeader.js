@@ -11,7 +11,7 @@ import { Colors } from 'styles/variables';
 class GlobalHeader extends PureComponent {
 
     render() {
-        const { titleComponent, leftComponent, rightComponent, ...otherProps } = this.props;
+        const { titleComponent, leftComponent, rightComponent, style, ...otherProps } = this.props;
 
         return (
             <ViewContainer style={ styles.container } { ...otherProps }>
@@ -19,7 +19,7 @@ class GlobalHeader extends PureComponent {
                     <StatusBar backgroundColor={ Colors.yellow } />
                 ) : null}
 
-                <View style={ styles.wrapper }>
+                <View style={[styles.wrapper, style]}>
                     {/* Left component */}
                     <View style={ styles.leftComponentContainer }>
                         { leftComponent }
