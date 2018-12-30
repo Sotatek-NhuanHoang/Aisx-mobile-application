@@ -6,7 +6,7 @@ import _ from 'lodash';
 import PriceApi from 'api/PriceApi';
 import MasterdataApi from 'api/MasterdataApi';
 import TrendingApi from 'api/TrendingApi';
-import { priceFormatWithPrecision, percentFormat } from 'helpers/format';
+import { marketFormat } from 'helpers/format';
 
 
 /**
@@ -89,9 +89,7 @@ export const MARKET_GET_PRICES = () => async (dispatch) => {
             const { coin, currency } = marketPrice;
             const pair = coin + '_' + currency;
 
-            memo[pair] = {
-                price: { ...marketPrice },
-            };
+            memo[pair] = { ...marketPrice };
             return memo;
         }, {});
 
@@ -159,32 +157,19 @@ export const marketReducer = handleActions({
  * =====================================================
  */
 
-export const trendingMarketsSelector = createSelector(
-    (store) => ({
+export const marketSelector = createSelector(
+    (store, coinPair) => ({
         markets: store.market.markets,
-        trendingMarkets: store.market.trendingMarkets,
+        coinPair: coinPair,
     }),
-    ({ markets, trendingMarkets }) => {
-        return _.reduce(trendingMarkets, (memo, trendingMarket) => {
-            const marketData = markets[trendingMarket];
+    ({ markets, coinPair }) => {
+        const market = markets[coinPair];
 
-            if (!marketData || !marketData.price) {
-                return memo;
-            }
+        if (!market) {
+            return null;
+        }
 
-            const { precision } = marketData;
-            const formatedMarketData = fromJS(marketData)
-                .mergeDeep({
-                    price: {
-                        price: priceFormatWithPrecision(marketData.price.price, precision),
-                        change: percentFormat(marketData.price.change),
-                    }
-                })
-                .toJS();
-            
-            memo.push(formatedMarketData);
-            return memo;
-        }, []);
+        return marketFormat(market);
     }
 );
 

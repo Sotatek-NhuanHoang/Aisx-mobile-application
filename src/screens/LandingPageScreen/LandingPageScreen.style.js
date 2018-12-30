@@ -3,10 +3,13 @@ import { Colors, FontSizes, Sizes } from 'styles/variables';
 
 export default ScaledSheet.create({
     container: {
-        paddingHorizontal: Sizes.paddingHorizontal,
+        flex: 1,
+        backgroundColor: 'red',
     },
 
     headerContainer: {
         backgroundColor: '#002841',
+        paddingTop: Sizes.s2,
+        paddingBottom: '60@s',
     },
 });

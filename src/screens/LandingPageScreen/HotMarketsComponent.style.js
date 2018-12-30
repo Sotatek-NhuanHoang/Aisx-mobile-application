@@ -30,28 +30,4 @@ export default ScaledSheet.create({
     trendingMarketSeperator: {
         width: Sizes.paddingHorizontal / 2,
     },
-
-    trendingMarket: {
-        flex: 1,
-        height: '90@s',
-        borderRadius: '5@s',
-        backgroundColor: '#1a3d54',
-        justifyContent: 'center',
-        paddingHorizontal: Sizes.s4,
-    },
-    trendingMarket_coinPair: {
-        fontSize: FontSizes[14],
-        color: Colors.graycc,
-    },
-    trendingMarket_price: {
-        marginTop: '2@s',
-        fontSize: FontSizes[15],
-        color: Colors.white,
-    },
-    trendingMarket_change: {
-        marginTop: Sizes.s1,
-        fontSize: FontSizes[14],
-        fontWeight: 'bold',
-        color: Colors.red,
-    },
 });
