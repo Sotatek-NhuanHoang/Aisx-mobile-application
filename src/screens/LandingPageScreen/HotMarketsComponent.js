@@ -23,7 +23,7 @@ export class HotMarketsComponent extends PureComponent {
             <View style={[styles.container, style]}>
                 <View style={ styles.trendingMarketsContainer }>
                     <Swiper
-                        key={ trendingMarkets.length }
+                        key={ trendingMarkets.join(' ') }
                         showsButtons={ false }
                         showsPagination={ true }
                         paginationStyle={{ bottom: 0 }}

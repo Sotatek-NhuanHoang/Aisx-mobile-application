@@ -11,6 +11,7 @@ export const Colors = {
     gray66: '#666666',
     gray33: '#333333',
 
+    mainBackground: '#303137',
     rowBackgroundGray: '#f2f4f5',
     headerBackgroundGray: '#3a3b41',
 };

@@ -8,6 +8,7 @@ import NotificationComponent from './NotificationComponent';
 import ImageSliderComponent from './ImageSliderComponent';
 import HotMarketsComponent from './HotMarketsComponent';
 import MenuBarComponent from './MenuBarComponent';
+import TopVolumeMarkets from './TopVolumeMarkets';
 import { MARKET_GET_PRICES, MARKET_GET_MASTERDATA, MARKET_GET_TRENDING_MARKETS } from 'store/market';
 
 import styles from './LandingPageScreen.style';
@@ -51,6 +52,14 @@ export class LandingPageScreen extends PureComponent {
                             left: 0,
                             right: 0,
                         }} />
+                    </View>
+
+                    {/* Top markets */}
+                    <View style={ styles.topMarketsContainer }>
+                        {/* Top volume markets */}
+                        <TopVolumeMarkets />
+
+                        {/* Top change markets */}
                     </View>
                 </ScrollView>
             </View>

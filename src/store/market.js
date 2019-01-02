@@ -173,6 +173,33 @@ export const marketSelector = createSelector(
     }
 );
 
+export const topVolumeMarketsSelector = createSelector(
+    (store) => ({
+        markets: store.market.markets,
+    }),
+    ({ markets }) => {
+        const sortedMarketsByVolume = _.orderBy(markets, (market) => {
+            return market.volume;
+        });
+        
+        // Select top 8 market
+        const top8VolumeMarkets = [];
+        for (let i = 0; i < 8; i++) {
+            const market = sortedMarketsByVolume[i];
+
+            if (!market) {
+                break;
+            }
+
+            const { coin, currency } = market;
+            const pair = coin + '_' + currency;
+            top8VolumeMarkets.push(pair);
+        }
+
+        return top8VolumeMarkets;
+    }
+);
+
 
 
 export default marketReducer;

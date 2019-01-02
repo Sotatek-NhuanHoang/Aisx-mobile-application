@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { setCustomText, setCustomTextInput } from 'react-native-global-props';
 
+import './src/globalStyle';
 import store from 'store';
 import Router from './src/routes';
 import GlobalBottomTabbar from 'components/GlobalBottomTabbar';
