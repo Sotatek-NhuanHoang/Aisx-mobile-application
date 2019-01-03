@@ -9,11 +9,10 @@ import ImageSliderComponent from './ImageSliderComponent';
 import HotMarketsComponent from './HotMarketsComponent';
 import MenuBarComponent from './MenuBarComponent';
 import TopVolumeMarkets from './TopVolumeMarkets';
+import TopChangeMarkets from './TopChangeMarkets';
 import { MARKET_GET_PRICES, MARKET_GET_MASTERDATA, MARKET_GET_TRENDING_MARKETS } from 'store/market';
 
 import styles from './LandingPageScreen.style';
-import { MenuBarHeight } from './MenuBarComponent.style';
-import { Sizes } from 'styles/variables';
 
 
 export class LandingPageScreen extends PureComponent {
@@ -40,18 +39,13 @@ export class LandingPageScreen extends PureComponent {
                         <NotificationComponent />
 
                         {/* Image slider */}
-                        <ImageSliderComponent style={{ marginTop: Sizes.s2, }} />
+                        <ImageSliderComponent style={ styles.ImageSliderComponent } />
                         
                         {/* Hot markets */}
-                        <HotMarketsComponent />
+                        <HotMarketsComponent style={ styles.HotMarketsComponent } />
 
                         {/* Menu bar */}
-                        <MenuBarComponent style={{
-                            position: 'absolute',
-                            bottom: -MenuBarHeight / 2,
-                            left: 0,
-                            right: 0,
-                        }} />
+                        <MenuBarComponent style={ styles.MenuBarComponent } />
                     </View>
 
                     {/* Top markets */}
@@ -60,6 +54,7 @@ export class LandingPageScreen extends PureComponent {
                         <TopVolumeMarkets />
 
                         {/* Top change markets */}
+                        <TopChangeMarkets />
                     </View>
                 </ScrollView>
             </View>

@@ -3,6 +3,7 @@ import PureComponent from 'pure-component';
 import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import { marketSelector } from 'store/market';
 
@@ -40,6 +41,33 @@ export class GlobalMarketDetail extends PureComponent {
         );
     }
 
+    renderMarketDetailType2() {
+        const { market } = this.props;
+
+        return (
+            <View style={ styles.type1Container }>
+                {/* Coin pair */}
+                <View style={ styles.coinPairContainer }>
+                    {/* Coin */}
+                    <Text style={ styles.marketCoin }>{ market.coin.toUpperCase() }</Text>
+
+                    {/* Currency */}
+                    <Text style={ styles.marketCurrency }>{' / ' + market.currency.toUpperCase()}</Text>
+                </View>
+
+                {/* Last price */}
+                <Text style={[styles.marketLastPrice, market.change >= 0 ? styles.marketLastPrice__increase : styles.marketLastPrice__decrease]}>
+                    { market.last_24h_price }
+                </Text>
+
+                {/* 24h change */}
+                <Text style={[styles.market24hChange, market.change >= 0 ? styles.market24hChange__increase : styles.market24hChange__decrease]}>
+                    { market.formatedChange }
+                </Text>
+            </View>
+        );
+    }
+
     render() {
         const { style, market, index, type } = this.props;
 
@@ -50,6 +78,7 @@ export class GlobalMarketDetail extends PureComponent {
         return (
             <View style={[styles.container, index % 2 === 0 ? styles.container__gray: null, style]}>
                 {type === 1 ? this.renderMarketDetailType1() : null}
+                {type === 2 ? this.renderMarketDetailType2() : null}
             </View>
         );
     }
@@ -72,7 +101,11 @@ const mapStateToProps = (store, ownProps) => {
     let market = null;
     switch (ownProps.type) {
         case 1:
-            market = marketSelector(store, ownProps.coinPair);
+            market = _.pick(marketSelector(store, ownProps.coinPair), ['coin', 'currency', 'change', 'last_24h_price', 'volume']);
+            break;
+
+        case 2:
+            market = _.pick(marketSelector(store, ownProps.coinPair), ['coin', 'currency', 'change', 'last_24h_price', 'formatedChange']);
             break;
     }
 

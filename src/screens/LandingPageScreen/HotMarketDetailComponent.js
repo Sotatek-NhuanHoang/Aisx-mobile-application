@@ -29,8 +29,8 @@ export class HotMarketDetailComponent extends PureComponent {
                 <Text style={ styles.trendingMarket_price }>
                     { market.price }
                 </Text>
-                <Text style={ styles.trendingMarket_change }>
-                    { market.change }
+                <Text style={[styles.trendingMarket_change, market.change >= 0 ? styles.trendingMarket_change__increase : styles.trendingMarket_change__decrease]}>
+                    { market.formatedChange }
                 </Text>
             </View>
         );

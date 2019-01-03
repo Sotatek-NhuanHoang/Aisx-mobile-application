@@ -21,7 +21,7 @@ export default ScaledSheet.create({
     },
 
     moreNotificationsIcon: {
-        fontSize: FontSizes[15],
+        fontSize: FontSizes[12],
         color: Colors.yellow,
     },
 });

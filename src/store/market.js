@@ -6,7 +6,7 @@ import _ from 'lodash';
 import PriceApi from 'api/PriceApi';
 import MasterdataApi from 'api/MasterdataApi';
 import TrendingApi from 'api/TrendingApi';
-import { marketFormat } from 'helpers/format';
+import { marketFormat, stringToNumber } from 'helpers/format';
 
 
 /**
@@ -173,33 +173,69 @@ export const marketSelector = createSelector(
     }
 );
 
+export const topChangeMarketsSelector = createSelector(
+    (store, changeType) => ({
+        markets: store.market.markets,
+        changeType: changeType,
+    }),
+    ({ markets, changeType }) => {
+        const sortedMarketsByChange = _.orderBy(markets, (market) => {
+            return -stringToNumber(market.change);
+        });
+        
+        // Select top 8 market
+        if (changeType === 'gainers') {
+            const top8ChangeMarkets = sortedMarketsByChange.slice(0, 8)
+                .map((market) => {
+                    if (!market) {
+                        return null;
+                    }
+
+                    const { coin, currency } = market;
+                    const pair = coin + '_' + currency;
+                    return pair;
+                });
+            return top8ChangeMarkets;
+        } else { // change type = losers
+            const top8ChangeMarkets = sortedMarketsByChange.slice(-8)
+                .map((market) => {
+                    if (!market) {
+                        return null;
+                    }
+
+                    const { coin, currency } = market;
+                    const pair = coin + '_' + currency;
+                    return pair;
+                })
+                .reverse();
+            return top8ChangeMarkets;
+        }
+    }
+);
+
 export const topVolumeMarketsSelector = createSelector(
     (store) => ({
         markets: store.market.markets,
     }),
     ({ markets }) => {
         const sortedMarketsByVolume = _.orderBy(markets, (market) => {
-            return market.volume;
+            return -market.volume;
         });
         
         // Select top 8 market
-        const top8VolumeMarkets = [];
-        for (let i = 0; i < 8; i++) {
-            const market = sortedMarketsByVolume[i];
-
-            if (!market) {
-                break;
-            }
-
-            const { coin, currency } = market;
-            const pair = coin + '_' + currency;
-            top8VolumeMarkets.push(pair);
-        }
-
+        const top8VolumeMarkets = sortedMarketsByVolume.slice(0, 8)
+            .map((market) => {
+                if (!market) {
+                    return null;
+                }
+    
+                const { coin, currency } = market;
+                const pair = coin + '_' + currency;
+                return pair;
+            });
         return top8VolumeMarkets;
     }
 );
-
 
 
 export default marketReducer;

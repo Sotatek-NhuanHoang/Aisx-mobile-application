@@ -2,6 +2,7 @@ import {
     setCustomScrollView,
     setCustomText,
     setCustomTextInput,
+    setCustomTouchableOpacity
 } from 'react-native-global-props';
 
 
@@ -23,4 +24,9 @@ setCustomTextInput({
     style: {
         fontFamily: 'Roboto',
     },
+});
+
+// Set touchable opacity style
+setCustomTouchableOpacity({
+    activeOpacity: 0.5,
 });

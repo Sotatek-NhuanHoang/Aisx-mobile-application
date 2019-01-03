@@ -5,6 +5,7 @@ import { Colors, FontSizes, Sizes } from 'styles/variables';
 export const COIN_PAIR_FLEX = 1;
 export const LAST_PRICE_FLEX = 2;
 export const VOLUME_BTC_FLEX = 2;
+export const CHANGE_24H_FLEX = 2;
 
 
 export default ScaledSheet.create({
@@ -46,6 +47,18 @@ export default ScaledSheet.create({
         color: Colors.red,
     },
     marketLastPrice__increase: {
+        color: Colors.green,
+    },
+
+    market24hChange: {
+        flex: CHANGE_24H_FLEX,
+        fontSize: FontSizes[14],
+        textAlign: 'right',
+    },
+    market24hChange__decrease: {
+        color: Colors.red,
+    },
+    market24hChange__increase: {
         color: Colors.green,
     },
 

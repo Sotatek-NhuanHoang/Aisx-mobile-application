@@ -16,7 +16,7 @@ export class NotificationComponent extends PureComponent {
         return (
             <View style={[styles.container, style]}>
                 {/* Icon */}
-                <AisxIcon name="account" style={ styles.notificationIcon } />
+                <AisxIcon name="Speaker" style={ styles.notificationIcon } />
 
                 {/* Notification text */}
                 <Text style={ styles.notificationText }>
@@ -24,7 +24,7 @@ export class NotificationComponent extends PureComponent {
                 </Text>
 
                 {/* More notifications icon */}
-                <AisxIcon name="account" style={ styles.moreNotificationsIcon } />
+                <AisxIcon name="arrow_2_1" style={ styles.moreNotificationsIcon } />
             </View>
         );
     }
