@@ -2,11 +2,12 @@ import { handleActions, createAction } from 'redux-actions';
 import { fromJS } from 'immutable';
 import { createSelector } from 'reselect';
 import _ from 'lodash';
+import { BigNumber } from 'bignumber.js';
 
 import PriceApi from 'api/PriceApi';
 import MasterdataApi from 'api/MasterdataApi';
 import TrendingApi from 'api/TrendingApi';
-import { marketFormat, stringToNumber } from 'helpers/format';
+import { marketFormat, stringToNumber, priceFormatWithPrecision } from 'helpers/format';
 
 
 /**
@@ -99,6 +100,11 @@ export const MARKET_GET_PRICES = () => async (dispatch) => {
     } catch (error) {
         
     }
+};
+
+export const MARKET_GET_DATA = () => async (dispatch) => {
+    await dispatch(MARKET_GET_MASTERDATA());
+    await dispatch(MARKET_GET_PRICES());
 };
 
 export const MARKET_UPDATE_TRENDING_MARKETS = createAction('MARKET_UPDATE_TRENDING_MARKETS');
@@ -236,6 +242,60 @@ export const topVolumeMarketsSelector = createSelector(
         return top8VolumeMarkets;
     }
 );
+
+export const marketsWithCurrencySelector = createSelector(
+    (store, currency, sortProperty = 'coin', sortDirection = 'asc') => ({
+        markets: store.market.markets,
+        currency: currency,
+        sortProperty: sortProperty,
+        sortDirection: sortDirection,
+    }),
+    ({ markets, currency, sortProperty, sortDirection }) => {
+        const marketsWithCurrency = _.reduce(markets, (memo, market) => {
+            if (market.currency !== currency) {
+                return memo;
+            }
+
+            const pair = market.coin + '_' + market.currency;
+            memo.push(pair);
+
+            return memo;
+        }, []);
+
+        const sortedMarkets = _.sortBy(marketsWithCurrency, [(coinPair) => {
+            const market = markets[coinPair];
+            const sortPropertyValue = sortProperty === 'coin' ? market[sortProperty].toLowerCase() : stringToNumber(market[sortProperty]);
+            
+            if (sortDirection === 'asc') {
+                return sortPropertyValue;
+            } else { // desc
+                return -sortPropertyValue;
+            }
+        }]);
+
+        return sortedMarkets;
+    }
+);
+
+export const priceUsdSelector = createSelector(
+    (store, currency) => ({
+        markets: store.market.markets,
+        currency: currency,
+    }),
+    ({ markets, currency }) => {
+        const market = markets[currency];
+
+        if (market.currency === 'usd') {
+            return '$ ' + priceFormatWithPrecision(market.price, '0.01');
+        }
+
+        const currencyUsdPrice = new BigNumber(markets[market.currency + '_' + 'usd'].price);
+        const coinPrice = currencyUsdPrice.multipliedBy(market.price).toNumber();
+
+        return '$ ' + priceFormatWithPrecision(coinPrice, '0.01');
+    }
+);
+
 
 
 export default marketReducer;

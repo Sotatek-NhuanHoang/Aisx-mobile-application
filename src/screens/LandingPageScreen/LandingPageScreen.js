@@ -10,7 +10,7 @@ import HotMarketsComponent from './HotMarketsComponent';
 import MenuBarComponent from './MenuBarComponent';
 import TopVolumeMarkets from './TopVolumeMarkets';
 import TopChangeMarkets from './TopChangeMarkets';
-import { MARKET_GET_PRICES, MARKET_GET_MASTERDATA, MARKET_GET_TRENDING_MARKETS } from 'store/market';
+import { MARKET_GET_DATA, MARKET_GET_TRENDING_MARKETS } from 'store/market';
 
 import styles from './LandingPageScreen.style';
 
@@ -21,8 +21,7 @@ export class LandingPageScreen extends PureComponent {
         super(props);
 
         this.props.navigation.addListener('willFocus', async () => {
-            await this.props.getMasterdata();
-            await this.props.getPrices();
+            await this.props.getMarketsData();
             await this.props.getTrendingMarkets();
         });
     }
@@ -64,14 +63,11 @@ export class LandingPageScreen extends PureComponent {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    getPrices: () => {
-        return dispatch(MARKET_GET_PRICES());
+    getMarketsData: () => {
+        return dispatch(MARKET_GET_DATA());
     },
     getTrendingMarkets: () => {
         return dispatch(MARKET_GET_TRENDING_MARKETS());
-    },
-    getMasterdata: () => {
-        return dispatch(MARKET_GET_MASTERDATA());
     },
 });
 

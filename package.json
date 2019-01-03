@@ -10,6 +10,7 @@
     "aisx-icon": "./libraries/aisx-icon",
     "api": "./src/api",
     "apisauce": "^1.0.1",
+    "bignumber.js": "^8.0.1",
     "components": "./src/components",
     "helpers": "./src/helpers",
     "i18n": "./src/i18n",

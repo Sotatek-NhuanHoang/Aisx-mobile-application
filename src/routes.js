@@ -16,7 +16,7 @@ const Routes = createStackNavigator({
     LandingPageScreen: LandingPageScreen,
     MarketsScreen: MarketsScreen,
 }, {
-    initialRouteName: 'LandingPageScreen',
+    initialRouteName: 'MarketsScreen',
     headerMode: 'none',
 });
 
