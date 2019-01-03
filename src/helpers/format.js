@@ -56,8 +56,10 @@ export const marketFormat = (market) => {
     const { precision } = market;
     const formatedMarket = fromJS(market)
         .mergeDeep({
+            last_24h_price: priceFormatWithPrecision(market.last_24h_price, precision),
             price: priceFormatWithPrecision(market.price, precision),
             change: percentFormat(market.change),
+            volume: priceFormatWithPrecision(market.volume, precision),
         })
         .toJS();
     return formatedMarket;

@@ -1,5 +1,7 @@
 import {
-    setCustomScrollView
+    setCustomScrollView,
+    setCustomText,
+    setCustomTextInput,
 } from 'react-native-global-props';
 
 
@@ -7,4 +9,18 @@ import {
 setCustomScrollView({
     alwaysBounceVertical: false,
     keyboardShouldPersistTaps: 'handled',
+});
+
+// Set text style
+setCustomText({
+    style: {
+        fontFamily: 'Roboto',
+    },
+});
+
+// Set text input style
+setCustomTextInput({
+    style: {
+        fontFamily: 'Roboto',
+    },
 });

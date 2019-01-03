@@ -1,6 +1,9 @@
 import { ScaledSheet } from 'react-native-size-matters';
 import { Colors, FontSizes, Sizes } from 'styles/variables';
 
+import { COIN_PAIR_FLEX, LAST_PRICE_FLEX, VOLUME_BTC_FLEX } from 'components/GlobalMarketDetail/GlobalMarketDetail.style';
+
+
 export default ScaledSheet.create({
     container: {
 
@@ -8,7 +11,6 @@ export default ScaledSheet.create({
 
     title: {
         fontSize: FontSizes[15],
-        fontWeight: 'bold',
         color: Colors.white,
         textAlign: 'center',
     },
@@ -26,13 +28,14 @@ export default ScaledSheet.create({
         color: Colors.gray99,
     },
     headerText_pair: {
-        flex: 1,
+        flex: COIN_PAIR_FLEX,
     },
     headerText_lastPrice: {
-        flex: 1,
+        flex: LAST_PRICE_FLEX,
+        textAlign: 'right',
     },
     headerText_volume: {
-        flex: 1,
+        flex: VOLUME_BTC_FLEX,
         textAlign: 'right',
     },
 });

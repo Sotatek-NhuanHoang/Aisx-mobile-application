@@ -3,6 +3,7 @@ import PureComponent from 'pure-component';
 import { View, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
+import GlobalMartketDetail from 'components/GlobalMarketDetail';
 import { topVolumeMarketsSelector } from 'store/market';
 import styles from './TopVolumeMarkets.style';
 
@@ -11,11 +12,22 @@ export class TopVolumeMarkets extends PureComponent {
 
     constructor(props) {
         super(props);
+
+        this.renderMarketDetail_keyExtractor = this.renderMarketDetail_keyExtractor.bind(this);
+        this.renderMarketDetail = this.renderMarketDetail.bind(this);
+    }
+
+    renderMarketDetail_keyExtractor(item) {
+        return item;
+    }
+    renderMarketDetail({ item: coinPair, index }) {
+        return (
+            <GlobalMartketDetail type={ 1 } coinPair={ coinPair } index={ index } />
+        );
     }
 
     render() {
         const { style, topVolumeMarkets } = this.props;
-        console.log(topVolumeMarkets);
         
         return (
             <View style={[styles.container, style]}>
@@ -43,6 +55,11 @@ export class TopVolumeMarkets extends PureComponent {
                 </View>
 
                 {/* Top volume markets list */}
+                <FlatList
+                    data={ topVolumeMarkets }
+                    keyExtractor={ this.renderMarketDetail_keyExtractor }
+                    renderItem={ this.renderMarketDetail }
+                />
             </View>
         );
     }
