@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import GlobalMartketDetail from 'components/GlobalMarketDetail';
 import { topChangeMarketsSelector } from 'store/market';
 import styles from './TopChangeMarkets.style';
-import AixsIcon from '../../../libraries/aisx-icon';
+import AixsIcon from 'aisx-icon';
 
 
 export class TopChangeMarkets extends PureComponent {
